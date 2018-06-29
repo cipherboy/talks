@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Pizza Friday: Intern Presentations - Summer 2018</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/material.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Custom styling -->
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- Printing and PDF exports -->
+        <script src="lib/js/d3.min.js"></script>
+        <script src="lib/js/d3pie.min.js"></script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <img class="rh-logo" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                    <h1>Pizza Friday: Intern&nbsp;Presentations</h1>
+                    <h4>Alexander Scheel</h4>
+                    <h5>(cipherboy)</h5>
+                    <p>Summer 2018</p>
+                </section>
+                <section>
+                    <section>
+                        <img class="rh-logo rh-small" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                        <h2>What is OpenSCAP?</h2>
+                    </section>
+                    <section>
+                        <h3>First some terminology</h3>
+                        <p>
+                            <ul>
+				<li>SCAP stands for Security Content Automation Protocol</li>
+				<li>OVAL stands for Open Vulnerability and Assessment Language</li>
+                                <li>When we say <i>security policy or benchmark</i>, we really mean "a set of rules created by a long-winded standards body".</li>
+                                <li>When we say <i>tailoring</i>, we really mean "choose a subset of the rules that we care about."</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Okay, so really, what is OpenSCAP?</h3>
+                        <p>
+                            <ul>
+                                <li>Three major projects: OpenSCAP, SCAP Security Guide, and SCAP Workbench</li>
+                                <li>Several minor projects: Anaconda plugin, OpenSCAP Daemon</li>
+                                <li>SCAP Security Guide builds security profiles from sets of rules.</li>
+                                <li>OpenSCAP scans a local or remote system against a particular benchmark.</li>
+                                <li>SCAP Workbench can tailor guides and provides a graphical scanning tool.</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>That's nice, but who uses OpenSCAP?</h3>
+                        <p>
+                            <ul>
+                                <li>US Government: <ul>
+                                    <li>Military for STIG compliance</li>
+                                    <li>DoD for C2S (Commercial Cloud Services) baseline</li>
+                                    <li>Affiliated Contractors: NIST 800-171</li>
+                                </ul></li>
+                                <li>Financial Institutions: PCI-DSS profile</li>
+                                <li>Medical Institutions: HIPAA profile</li>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <img class="rh-logo rh-small" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                        <h2>What is the goal this Summer?</h2>
+                        <p>
+                            Make SCAP Security Guide easier to contribute to.
+                        </p>
+                    </section>
+                    <section>
+                        <h3>What makes it difficult currently?</h3>
+                        <p>
+                            <ul>
+                                <li>Structured for programmers, not subject-matter experts</li>
+                                <li>Siloed projects: different (Linux) operating systems shared relatively little policy</li>
+                                <li>Confusing project organization: data about a rule exists in multiple separate tree</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Well, how should we fix it?</h3>
+                        <p>
+                            <ul>
+                                <li>Easy to write rules, documentation, and fixes (YAML, markdown, structure, etc.)</li>
+                                <li>Merge all Linux platforms into a shared <span class="monospace">linux_os</span> guide</li>
+                                <li>Reorganize rules such that there is a shared directory for all associated information</li>
+                                <li>Link to upstream location for a rule in the HTML reports</li>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <img class="rh-logo rh-small" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                        <h2>A quick demo...</h2>
+                    </section>
+                    <section>
+                        <h3>We start with a <a href="https://www.stigviewer.com/stig/red_hat_enterprise_linux_7/2017-12-14/finding/V-72249" target="_blank">a policy...</a>...</h3>
+                        <p>
+                            ...and then can create <a href="https://github.com/OpenSCAP/scap-security-guide/blob/master/linux_os/guide/services/ssh/ssh_server/sshd_disable_user_known_hosts.rule" target="_blank">a rule</a>, <a href="https://github.com/OpenSCAP/scap-security-guide/blob/master/shared/checks/oval/sshd_disable_user_known_hosts.xml" target="_blank">a check</a>, <a href="https://github.com/OpenSCAP/scap-security-guide/blob/master/shared/fixes/bash/sshd_disable_user_known_hosts.sh" target="_blank">a bash fix</a>, and <a href="https://github.com/OpenSCAP/scap-security-guide/blob/master/shared/fixes/ansible/sshd_disable_user_known_hosts.yml" target="_blank">an Ansible fix</a>. <br><br>
+                            (We also can also add <a href="https://github.com/OpenSCAP/scap-security-guide/blob/master/tests/data/group_services/group_ssh/group_ssh_server" target="_blank"> tests</a>)
+                        </p>
+                    </section>
+                    <section>
+                        <h3>This gets compiled into&nbsp;a&nbsp;datastream...</h3>
+                        <img class="screenshot" src="img/scap-workbench-first.png" alt="Loading a datastream">
+                    </section>
+                    <section>
+                        <h3>Which we tailor...</h3>
+                        <img class="screenshot" src="img/scap-workbench-second.png" alt="Loading a datastream">
+                    </section>
+                    <section>
+                        <h3><a href="ssg-fedora-ds-xccdf.report.html" target="_blank">And turn into a report</a>!</h3>
+                    </section>
+                </section>
+                <section>
+                    <img class="rh-logo rh-small" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                    <h2>Current State of the Internship</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <p class="quote medium">
+                                    <b><i>&nbsp;&nbsp;3</i></b> &mdash; Upstreams<br>
+                                        <span class="small">{<a href="https://github.com/OpenSCAP/scap-security-guide" target="_blank">scap-security-guide</a></span><br>
+                                        <span class="small"><a href="https://github.com/OpenSCAP/scap-workbench" target="_blank">scap-workbench</a>,</span><br>
+                                        <span class="small"><a href="https://github.com/OpenSCAP/openscap" target="_blank">openscap</a>}<br></span>
+                                    <b><i>&nbsp;&nbsp;7</i></b> &mdash; Closed PRs<br>
+                                        <span class="small">Mostly intern<br></span>
+                                        <span class="small">misunderstandings&nbsp;:)<br></span>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="quote medium">
+                                    <b><i>&nbsp;&nbsp;46</i></b> &mdash; Merged PRs<br>
+                                        <span class="small">30 - against <a href="https://github.com/OpenSCAP/scap-security-guide" target="_blank">scap-security-guide</a> (118 commits)<br></span>
+                                        <span class="small">11 - against <a href="https://github.com/OpenSCAP/scap-workbench" target="_blank">scap-workbench</a> (29 commits)<br></span>
+                                        <span class="small">5 - against <a href="https://github.com/OpenSCAP/openscap" target="_blank">openscap</a> (5 commits)<br></span>
+                                    <b><i>100</i></b> &mdash; Percent open source and publicly available<br>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </section>
+                <section>
+                    <section>
+                        <img class="rh-logo rh-small" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                        <h1>Thanks!</h1>
+                        <p class="quote">
+                            <ul>
+                                <li>pvrabec! <span class="small">(fearless leader)</span></li>
+                                <li>mpreisler! <span class="small">(local mentor)</span></li>
+                                <li>galford! <span class="small">(remote reviewer)</span></li>
+                                <li>jcerny! <span class="small">(remote mentor)</span></li>
+                                <li>matyc! <span class="small">(remote mentor)</span></li>
+                                <li>mhaicman! <span class="small">(remote mentor)</span></li>
+                                <li>mmarhefk! <span class="small">(remote mentor)</span></li>
+                                <li>wsato! <span class="small">(remote mentor)</span></li>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script src="js/app.js"></script>
+    </body>
+</html>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/material.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+        <script src="lib/js/d3.min.js"></script>
+        <script src="lib/js/d3pie.min.js"></script>
+
+        <style>
+            h1 {
+                font-size: 75px !important;
+            }
+            img.rh-logo {
+                border: none !important;
+                background: none !important;
+                box-shadow: none !important;
+            }
+            img.rh-small {
+                position: absolute;
+                right: 20px;
+                top: -45px;
+                width: 25%;
+            }
+            div#PRpieChart {
+                z-index: 9999 !important;
+            }
+            p.quote {
+                text-align: left !important;
+            }
+            p.quote b i {
+                font-family: monospace;
+            }
+            p.indent {
+                text-indent: 50px;
+            }
+            p.quote span.small {
+                font-family: monospace;
+                margin-left: 100px;
+                text-indent: 0px;
+            }
+            .small {
+                font-size: 40% !important;
+            }
+            .medium {
+                font-size: 70% !important;
+            }
+            i.material-icons {
+                text-indent: 0px !important;
+                font-size: 50% !important;
+            }
+            .mono {
+                font-family: monospace !important;
+                font-size: 60% !important;
+                border-bottom: 1px solid #ffffff !important;
+            }
+            h5 {
+                font-size: 85% !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <img class="rh-logo" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                    <h1>Pizza Friday: Intern&nbsp;Presentations</h1>
+                    <h4>Alexander Scheel</h4>
+                    <h5>(cipherboy)</h5>
+                    <p>Summer 2018</p>
+                </section>
+                <section>
+                    <section>
+                        <img class="rh-logo rh-small" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                        <h2>What is OpenSCAP?</h2>
+                    </section>
+                    <section>
+                        <h3>First some terminology</h3>
+                        <p>
+                            <ul>
+                                <li>When we say <i>security policy or benchmark</i>, we really mean "a set of rules created by a long-winded standards body".</li>
+                                <li>When we say <i>tailoring</i>, we really mean "choose a subset of the rules that we care about."</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>Okay, so really, what is OpenSCAP?</h3>
+                        <p>
+                            <ul>
+                                <li>Three major projects: OpenSCAP, SCAP Security Guide, and SCAP Workbench</li>
+                                <li>Several minor projects: Anaconda plugin, OpenSCAP Daemon</li>
+                                <li>SCAP Security Guide builds security profiles from sets of rules.</li>
+                                <li>OpenSCAP scans a local or remote system against a particular benchmark.</li>
+                                <li>SCAP Workbench can tailor guides and provides a graphical scanning tool.</li>
+                            </ul>
+                        </p>
+                    </section>
+                    <section>
+                        <h3>That's nice, but who uses OpenSCAP?</h3>
+                        <p>
+                            <ul>
+                                <li>US Goverment: <ul>
+                                    <li>Military for STIG compliance</li>
+                                    <li>DoD for C2S (Commercial Cloud Services) baseline</li>
+                                    <li>Affiliated Constractors: NIST 800-171</li>
+                                </ul></li>
+                                <li>Financial Institutions: PCI-DSS profile</li>
+                                <li>Medical Institutions: HIPAA profile</li>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+                <section>
+                    <img class="rh-logo rh-small" src="img/scap-rh-combined.png" alt="Red Hat Logo">
+                    <h2>Current State of the Internship</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <p class="quote medium">
+                                    <b><i>&nbsp;&nbsp;3</i></b> &mdash; Upstreams<br>
+                                        <span class="small">{<a href="https://github.com/OpenSCAP/scap-security-guide" target="_blank">scap-security-guide</a></span><br>
+                                        <span class="small"><a href="https://github.com/OpenSCAP/scap-workbench" target="_blank">scap-workbench</a>,</span><br>
+                                        <span class="small"><a href="https://github.com/OpenSCAP/openscap" target="_blank">openscap</a>}<br></span>
+                                    <b><i>&nbsp;&nbsp;7</i></b> &mdash; Merged PRs<br>
+                                        <span class="small">Mostly user error :)<br></span>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="quote medium">
+                                    <b><i>&nbsp;&nbsp;46</i></b> &mdash; Merged PRs<br>
+                                        <span class="small">30 - against <a href="https://github.com/OpenSCAP/scap-security-guide" target="_blank">scap-security-guide</a> (118 commits)<br></span>
+                                        <span class="small">11 - against <a href="https://github.com/OpenSCAP/scap-workbench" target="_blank">scap-workbench</a> (29 commits)<br></span>
+                                        <span class="small">5 - against <a href="https://github.com/OpenSCAP/openscap" target="_blank">openscap</a> (5 commits)<br></span>
+                                    <b><i>100</i></b> &mdash; Percent open source and publicly available<br>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </section>
+                <section>
+                    <section>
+                        <h1>Thanks!</h1>
+                        <p class="quote">
+                            <ul>
+                                <li>pvrabec! <span class="small">(fearless leader)</span></li>
+                                <li>mpreisler! <span class="small">(local mentor)</span></li>
+                                <li>galford! <span class="small">(remote reviewer)</span></li>
+                                <li>jcerny! <span class="small">(remote mentor)</span></li>
+                                <li>matyc! <span class="small">(remote mentor)</span></li>
+                                <li>mhaicman! <span class="small">(remote mentor)</span></li>
+                                <li>mmarhefk! <span class="small">(remote mentor)</span></li>
+                                <li>wsato! <span class="small">(remote mentor)</span></li>
+                            </ul>
+                        </p>
+                    </section>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info about config & dependencies:
+            // - https://github.com/hakimel/reveal.js#configuration
+            // - https://github.com/hakimel/reveal.js#dependencies
+            Reveal.initialize({
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+
+            var els = document.getElementsByTagName('a');
+            for (var e in els) {
+                var el = els[e];
+                if (el.target == "_blank") {
+                    el.innerHTML += "&nbsp;<i class=\"material-icons\">launch</i>";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,58 @@
+
+h1 {
+    font-size: 75px !important;
+}
+img {
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+img.rh-small {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+    width: 25%;
+}
+img.screenshot {
+    height: 450px !important;
+    max-height: 450px !important;
+}
+div#PRpieChart {
+    z-index: 9999 !important;
+}
+p.quote {
+    text-align: left !important;
+}
+p.quote b i {
+    font-family: monospace;
+}
+p.indent {
+    text-indent: 50px;
+}
+p.quote span.small {
+    font-family: monospace;
+    margin-left: 100px;
+    text-indent: 0px;
+}
+.small {
+    font-size: 40% !important;
+}
+.medium {
+    font-size: 70% !important;
+}
+i.material-icons {
+    text-indent: 0px !important;
+    font-size: 50% !important;
+}
+.mono {
+    font-family: monospace !important;
+    font-size: 60% !important;
+    border-bottom: 1px solid #ffffff !important;
+}
+.monospace {
+    font-family: monospace !important;
+    font-size: 60% !important;
+}
+h5 {
+    font-size: 85% !important;
+}
